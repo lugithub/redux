@@ -4,22 +4,18 @@ import { createStore } from 'redux'
 import TestRenderer from 'react-test-renderer'
 import reducer from '../reducers'
 import Link from './Link'
-import ReactTestUtils from 'react-dom/test-utils';
-import { findRenderedComponentWithType } from 'react-dom/test-utils';
-//const store = createStore(reducer)
+import TestUtils from 'react-dom/test-utils';
+import { isElement } from 'react-dom/test-utils';
 
 describe('Link component', () => {
   it('should handle onClick', () => {
-    // const tree = TestRenderer.create(
-    //   <Link active={false} onClick={e => e}>children</Link>
-    // ).toTree();
-    const tree = Link({
-      active: false,
-      children: 'children',
-      onClick: console.log,
-    });
-    const element = findRenderedComponentWithType(tree, 'a');
-    ReactTestUtils.Simulate.click(element);
+    const tree = TestRenderer.create(
+      <Link active={false} onClick={ e => {
+          console.log('onClick', e);
+        }}>children</Link>
+    ).root;
 
+    const element = tree.findByType('a');
+    TestUtils.Simulate.click(element, {screenX: 111, screenY: 111});
   });
 })
