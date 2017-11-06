@@ -1,8 +1,11 @@
 import { expect } from 'chai';
 import React from 'react';
 import TodoList from './TodoList';
-import { shallow } from 'enzyme';
+import { shallow, configure } from 'enzyme';
 import sinon from 'sinon';
+import Adapter from 'enzyme-adapter-react-16';
+
+configure({ adapter: new Adapter() });
 
 describe('TodoList component', () => {
   it('should handle click events', () => {

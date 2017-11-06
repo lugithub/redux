@@ -1,8 +1,11 @@
 import { expect } from 'chai';
 import React from 'react'
 import AddTodo from './AddTodo'
-import { shallow } from 'enzyme';
+import { shallow, configure } from 'enzyme';
 import sinon from 'sinon';
+import Adapter from 'enzyme-adapter-react-16';
+
+configure({ adapter: new Adapter() });
 
 describe('AddTodo component', () => {
   it('should handle submit', () => {
