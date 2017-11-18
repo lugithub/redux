@@ -25,7 +25,7 @@ export const receivePosts = (reddit, json) => ({
   receivedAt: Date.now()
 })
 
-const fetchPosts = reddit => async dispatch => {
+export const fetchPosts = reddit => async dispatch => {
   dispatch(requestPosts(reddit))
 
   // return fetch(`https://www.reddit.com/r/${reddit}.json`)
