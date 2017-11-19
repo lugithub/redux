@@ -4,22 +4,19 @@ import classnames from 'classnames'
 import TodoTextInput from './TodoTextInput'
 
 export default class TodoItem extends Component {
-  static propTypes = {
-    todo: PropTypes.object.isRequired,
-    editTodo: PropTypes.func.isRequired,
-    deleteTodo: PropTypes.func.isRequired,
-    completeTodo: PropTypes.func.isRequired
+  constructor(props) {
+    super(props);
+    this.state = { editing: false };
+
+    this.handleDoubleClick = this.handleDoubleClick.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
-  state = {
-    editing: false
-  }
-
-  handleDoubleClick = () => {
+  handleDoubleClick() {
     this.setState({ editing: true })
   }
 
-  handleSave = (id, text) => {
+  handleSave(id, text) {
     if (text.length === 0) {
       this.props.deleteTodo(id)
     } else {
@@ -63,4 +60,11 @@ export default class TodoItem extends Component {
       </li>
     )
   }
+}
+
+TodoItem.propTypes = {
+    todo: PropTypes.object.isRequired,
+    editTodo: PropTypes.func.isRequired,
+    deleteTodo: PropTypes.func.isRequired,
+    completeTodo: PropTypes.func.isRequired
 }

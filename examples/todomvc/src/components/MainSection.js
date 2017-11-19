@@ -11,18 +11,19 @@ const TODO_FILTERS = {
 }
 
 export default class MainSection extends Component {
-  static propTypes = {
-    todos: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
+  constructor(props) {
+    super(props);
+    this.state = { filter: SHOW_ALL };
+
+    this.handleClearCompleted = this.handleClearCompleted.bind(this);
+    this.handleShow = this.handleShow.bind(this);
   }
 
-  state = { filter: SHOW_ALL }
-
-  handleClearCompleted = () => {
+  handleClearCompleted() {
     this.props.actions.clearCompleted()
   }
 
-  handleShow = filter => {
+  handleShow(filter) {
     this.setState({ filter })
   }
 
@@ -79,4 +80,9 @@ export default class MainSection extends Component {
       </section>
     )
   }
+}
+
+MainSection.propTypes = {
+  todos: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired
 }
