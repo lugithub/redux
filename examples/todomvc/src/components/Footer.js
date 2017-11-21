@@ -10,14 +10,6 @@ const FILTER_TITLES = {
 }
 
 export default class Footer extends Component {
-  static propTypes = {
-    completedCount: PropTypes.number.isRequired,
-    activeCount: PropTypes.number.isRequired,
-    filter: PropTypes.string.isRequired,
-    onClearCompleted: PropTypes.func.isRequired,
-    onShow: PropTypes.func.isRequired
-  }
-
   renderTodoCount() {
     const { activeCount } = this.props
     const itemWord = activeCount === 1 ? 'item' : 'items'
@@ -69,4 +61,12 @@ export default class Footer extends Component {
       </footer>
     )
   }
+}
+
+Footer.propTypes = {
+  completedCount: PropTypes.number.isRequired,
+  activeCount: PropTypes.number.isRequired,
+  filter: PropTypes.string.isRequired,
+  onClearCompleted: PropTypes.func.isRequired,
+  onShow: PropTypes.func.isRequired
 }
